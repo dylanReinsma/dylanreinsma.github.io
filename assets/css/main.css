@@ -68,8 +68,6 @@ input, select, textarea {
 
 /* Basic */
 
-	.portrait {width:100%;}
-
 	html {
 		box-sizing: border-box;
 	}
@@ -3117,5 +3115,9 @@ input, select, textarea {
 					margin: 0;
 					padding: 0;
 				}
-
+	
+		.portrait {
+			width:100%;
+		}
+				
 	}
