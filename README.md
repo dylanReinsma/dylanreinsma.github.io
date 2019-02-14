@@ -1,2 +1,2 @@
-# dylanreinsmaBU.github.io
+# dylanreinsma.github.io
 Personal Portfolio Website
