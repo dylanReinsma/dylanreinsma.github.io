@@ -49,3 +49,24 @@ main {
     color: #888;
     margin-bottom: 10px;
 }
+
+/* Add custom styles for code block and copy button */
+pre {
+    background-color: #f4f4f4;
+    padding: 10px;
+    border-radius: 5px;
+    overflow-x: auto;
+}
+
+.copy-button {
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.copy-button:hover {
+    background-color: #45a049;
+}

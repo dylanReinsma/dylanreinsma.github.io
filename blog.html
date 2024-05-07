@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,25 +8,104 @@
     <link rel="stylesheet" href="style.css">
     <!-- Add any additional CSS or external stylesheets here -->
 </head>
+
 <body>
     <header>
         <nav>
             <ul>
                 <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About</a></li>
+                <!--<li><a href="about.html">About</a></li> -->
                 <!-- Add more navigation links as needed -->
             </ul>
         </nav>
     </header>
-    
+
     <main>
         <section class="blog-posts">
             <!-- Blog post items will be dynamically generated here -->
             <article>
-                <h2>Sample Blog Post Title</h2>
-                <p class="post-meta">Posted on January 1, 2024</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam quis tortor eu odio commodo tincidunt. Donec at velit ullamcorper, fermentum risus vel, condimentum risus. Nam id mi varius, pretium nunc in, pellentesque felis. Cras maximus, sapien a dignissim varius, nisi velit consequat sapien, ac pellentesque lorem velit sed neque.</p>
-                <!-- Add more content to your blog posts as needed -->
+
+            </article>
+            <!-- Add more content to your blog posts as needed -->
+            <article class="blog-post">
+                <h2>Setting up a Proxmox Cluster with ZFS: A Step-by-Step Guide</h2>
+
+                <h3>Introduction:</h3>
+                <p>Proxmox Virtual Environment (Proxmox VE) is an open-source platform for virtualization that combines
+                    two powerful technologies: KVM (Kernel-based Virtual Machine) for virtualization and LXC (Linux
+                    Containers) for lightweight containerization. Setting up a Proxmox cluster allows you to manage and
+                    migrate virtual machines across multiple physical hosts seamlessly. ZFS, a scalable and efficient
+                    file system, can be used as the storage backend for Proxmox, providing features such as data
+                    integrity, compression, and snapshots.</p>
+
+                <h3>Prerequisites:</h3>
+                <ul>
+                    <li>Three physical machines with Proxmox VE installed.</li>
+                    <li>A network connection between the three machines.</li>
+                    <li>Basic knowledge of Linux command-line interface.</li>
+                </ul>
+                <h3>Step 1: Install Proxmox VE</h3>
+
+                <p>Install Proxmox VE on each of the three machines by following the official installation guide
+                    provided by Proxmox. You can download the ISO image from the Proxmox website and boot your machines
+                    from it to begin the installation process</p>
+
+                <h3>Step 2: Configure Network Settings:</h3>
+
+                <p>Ensure that each machine has a unique hostname and IP address assigned. You can configure the network
+                    settings either during the installation process or after installation using the `nmtui` or `ip`
+                    command-line tools.</p>
+
+                <h3>Step 3: Prepare Storage with ZFS:</h3>
+
+                <p>1. On each Proxmox node, prepare the storage using ZFS. Run the following commands to install the
+                    required packages and create a ZFS pool:</p>
+                <pre><code id="code-snippet-1">
+                    apt-get update
+                    apt-get install zfsutils-linux -y
+                    </code></pre>
+                <button class="copy-button" onclick="copyCode('code-snippet-1')">Copy</button>
+                <p>2. Once the packages are installed, create a new ZFS pool using the disks or partitions you want to
+                    allocate for storage:</p>
+                <pre><code id="code-snippet-2">
+                    zpool create &lt;pool_name&gt; &lt;disk1&gt; &lt;disk2&gt;
+                    </code></pre>
+                <button class="copy-button" onclick="copyCode('code-snippet-2')">Copy</button>
+                <p>Replace `<pool_name>` with the desired name for your ZFS pool and &lt;disk1&gt;, &lt;disk2&gt;, etc.,
+                        with the names of the disks or partitions you want to include in the pool.</p>
+                <p>3. Verify that the ZFS pool has been created successfully by running:</p>
+                <pre><code id="code-snippet-3">
+                    zpool list
+                    </code></pre>
+                <button class="copy-button" onclick="copyCode('code-snippet-3')">Copy</button>
+                <p>Repeat this process on each Proxmox node to create a consistent storage setup across the cluster.</p>
+                <h3>Step 4: Configure Proxmox Cluster:</h3>
+                <p>1. Log in to the Proxmox web interface on one of the nodes by accessing its IP address in a web
+                    browser.</p>
+                <p>2. Navigate to the "Datacenter" view and click on "Cluster" in the left sidebar.</p>
+                <p>3. Click on the "Join Information" tab and note down the cluster configuration details, including the
+                    "Node Name," "Node IP," and "Authentication Key."</p>
+                <p>4. Repeat steps 1-3 for the remaining nodes in the cluster.</p>
+                <p>5. On each node, click on the "Join Information" tab and enter the information obtained from step 3
+                    to join the cluster.</p>
+                <p>6. Once all nodes have been added to the cluster, you should see them listed under the "Cluster" tab
+                    in the Proxmox web interface.</p>
+                <h3>Step 5: Configure Shared Storage:</h3>
+                <p>1. In the Proxmox web interface, navigate to the "Datacenter" view and click on "Storage" in the left
+                    sidebar.</p>
+                <p>2. Click on "Add" and select "ZFS" as the storage type.</p>
+                <p>3. Enter a name for the storage, select the ZFS pool you created in Step 3, and click "Add."</p>
+                <p>4. Repeat this process on each node to add the same ZFS storage pool as shared storage across the
+                    cluster.</p>
+                <h3>Step 6: Test High Availability (Optional):</h3>
+                <p>To test the high availability of the Proxmox cluster, you can migrate a virtual machine from one node
+                    to another using the Proxmox web interface. This ensures that virtual machines remain accessible
+                    even if one of the nodes fails.</p>
+                <h3>Conclusion:</h3>
+                <p>You have successfully set up a Proxmox cluster on three machines using ZFS as the storage backend.
+                    This cluster configuration provides high availability and scalability for your virtualized
+                    infrastructure, allowing you to efficiently manage and migrate virtual machines across multiple
+                    nodes.</p>
             </article>
             <!-- Add more articles for additional blog posts -->
         </section>
@@ -35,4 +115,5 @@
         <p>&copy; 2024 Dylan Reinsma. All rights reserved.</p>
     </footer>
 </body>
+
 </html>
