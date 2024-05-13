@@ -108,6 +108,46 @@
                     nodes.</p>
             </article>
             <!-- Add more articles for additional blog posts -->
+            <article>
+                
+<h2>Setting up Lancache Docker on Synology Without Port Mapping</h2>
+
+<h3>Introduction:</h3>
+<p>In this guide, we'll walk through the process of setting up Lancache Docker on your Synology NAS without relying on port mapping. Lancache is a caching proxy server designed to significantly reduce bandwidth usage and improve download speeds for various game launchers and platforms.</p>
+
+<h3>Requirements:</h3>
+<p>Before we begin, ensure you have the following:</p>
+<ul>
+    <li>A Synology NAS with Docker installed</li>
+    <li>Basic familiarity with Docker and Synology DiskStation Manager (DSM)</li>
+   </ul>
+
+<h3>Step 1: Install Docker on Synology:</h3>
+<p>If you haven't already, install Docker from the Synology Package Center. Follow the on-screen instructions to complete the installation.</p>
+
+<h3>Step 2: Prepare Docker Container:</h3>
+  <p>1. Open Docker on your Synology NAS.</p> 
+   <p>2. Go to the "Registry" tab and search for "lancachenet/lancache:latest" in the search bar.</p>
+   <p>3. Download the Lancache Docker image by clicking on it and selecting "Download."</p>
+   <p>4. Once downloaded, go to the "Image" tab, select the Lancache image, and click "Launch."</p>
+   <p>5. In the "Advanced Settings," configure the container settings as needed, including resource allocation and network settings. Ensure to disable port mapping for this setup.</p>
+
+<h3>Step 3: Configure Container Environment Variables:</h3>
+   <p>1. After launching the container, go to the "Container" tab and select the Lancache container.</p>
+   <p>2. Click on "Details" and then "Edit" to modify the container settings.</p>
+   <p>3. Under the "Environment" section, add the necessary environment variables for Lancache configuration. These variables include CACHE_IP, DNS_IP, and INTERFACES. Refer to the Lancache documentation for detailed instructions on configuring these variables.</p>
+
+<h3>Step 4: Start Lancache Container:</h3>
+   <p>1. Once you've configured the environment variables, click "Apply" to save the changes.</p>
+   <p>2. Start the Lancache container by clicking on "Action" and selecting "Start."</p>
+
+<h3>Step 5: Verify Lancache Setup:</h3>
+   <p>1. After the container has started successfully, verify that Lancache is running correctly by accessing its web interface or checking the container logs for any errors.</p>
+
+<h>Conclusion:</h>
+<p>By following these steps, you can set up Lancache Docker on your Synology NAS without relying on port mapping. This configuration allows Lancache to effectively cache game downloads and updates, reducing bandwidth usage and improving download speeds for your gaming devices on the network.</p>
+
+            </article>
         </section>
     </main>
 
